@@ -87,7 +87,6 @@ const Login = function () {
             headers: {
                 'Content-Type': 'application/json'
             },
-            mode: 'cors',
             credentials: 'include',
 
 
