@@ -115,12 +115,17 @@ async function deleteItem(idx) {
         const req = await fetch(`${url}/api/todo/`, { credentials: 'include' })
 
 
+
+
+        if(req.status ==200){
         const res = await req.json();
-        console.log(res)
 
         setData({ todos: res.data })
 
+}else {
 
+    router.replace("/login")
+}
 
     }
 

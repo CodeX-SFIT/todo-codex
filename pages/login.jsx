@@ -101,14 +101,19 @@ const Login = function () {
             let res = await req.json()   
             router.replace('/todo');   
 
-            console.log(res);
+            // console.log(res);
+        }
+        else if(req.status ==400){
+
+            alert("Invalid username or password")
+
+
+        }
+        else  {
+            alert("Something went wrong! Error:", req.status )
         }
 
-
-        else {
-
-            alert("Something went wrong from server")
-        }
+       
 
 
     }
