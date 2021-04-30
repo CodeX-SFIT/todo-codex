@@ -17,7 +17,7 @@ export default function Add(props) {
     async function deleteItem(idx) {
 
 
-        return console.log(idx)
+        // return console.log(idx)
 
         const req = await fetch("https://django-todo-list-api.herokuapp.com/api/todo/" + idx, { credentials: 'include', method: 'DELETE' })
 
