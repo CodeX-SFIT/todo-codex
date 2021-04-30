@@ -1,5 +1,9 @@
 .container {
-  width: 100%;
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
   height: 100vh;
   display: flex;
   flex-direction: row;
@@ -24,7 +28,8 @@
 
 .login-tab h2 {
   font-size: 28px;
-  color: rgb(214, 59, 59);
+  color:  #232840;
+;
 
   font-weight: 300;
 
@@ -42,7 +47,9 @@
   font-size: 13px;
   padding: 10px;
 
-  color: rgb(214, 59, 59);
+  color:  #232840;
+  text-align: center;
+;
 }
 
 .input-tab input {
@@ -51,7 +58,9 @@
   border-radius: 20px;
 
   border-width: 1px;
-  border-color: rgb(214, 59, 59);
+  border-color:  #232840;
+  text-align: center;
+;
 }
 
 .input-tab input:focus {
@@ -69,8 +78,10 @@
   width: 50%;
   padding: 10px 20px;
   border-radius: 20px;
-  background-color: rgb(214, 59, 59);
-  border: 1px solid rgb(214, 59, 59);
+  background-color:  #232840;
+;
+  border: 1px solid  #232840;
+;
 
   color: white;
 }
@@ -79,14 +90,19 @@
   cursor: pointer;
 
   background-color: white;
-  color: rgb(214, 59, 59);
+  color:  #232840;
+;
+  color: #232840;
+
 }
 
 .canvas {
   width: 60%;
   height: 100%;
 
-  background-color: rgb(214, 59, 59);
+  background-color:  #232840;
+;
+  background-color: #232840;
 
   background-image: url("/images/login-bg.png");
   padding: 35px;

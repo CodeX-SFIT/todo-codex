@@ -1,28 +1,20 @@
 import Head from "next/head";
-
-const HeadTag = function () {
-  return (
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-  );
-};
-
-const Greeting = function () {
-  return <h1> Hello world</h1>;
-};
-
+import styles from "../styles/Home.module.css";
+import {useEffect} from 'react'
+import {useRouter} from 'next/router';
 export default function Home() {
-  return (
-    <div>
-      <HeadTag />
-      <main>
-        <Greeting />
 
-        <Greeting />
-        <Greeting />
-      </main>
+  const router= useRouter();
+
+
+  useEffect(() => {
+
+    router.replace('/login');
+  },[])
+
+  return (
+    <div className={styles.container}>
+
     </div>
   );
 }

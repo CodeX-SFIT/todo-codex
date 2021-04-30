@@ -21,10 +21,10 @@ const List = function (props) {
 
                 <div className="list-title">
 
-                    <h1>Hi, Harsh!</h1>
-                    <p>Here is the list of all your unfinished tasks ,</p>
+                    <h1>Welcome !</h1>
+                    <p>Here is the list of all your tasks ,</p>
 
-                    <p><span> {props.data.todos.length} Unfinished tasks</span></p>
+                    <p><span> {props.data.todos.length} tasks</span></p>
 
                 </div>
 

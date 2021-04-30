@@ -1,8 +1,8 @@
 
 import Head from 'next/head'
 import { useState, useEffect } from 'react';
-
-let url = "http://localhost:8000"//"https://django-todo-list-api.herokuapp.com"
+import {useRouter}  from 'next/router'
+const {url} = require('../config')
 const HeadTag = function () {
 
 
@@ -54,9 +54,25 @@ const HeadTag = function () {
 
 const Login = function () {
 
+    const router = useRouter();
+
     const [formData, setForm] = useState({ username: 'Damon', password: '123456' })
     useEffect(async () => {
-    })
+
+        let req =  await fetch(`${url}/api/todo/` ,{credentials:'include'});
+
+        if(req.status ==200){
+
+
+       router.replace('/todo')
+        }
+
+        
+
+
+
+
+    } ,[]) 
 
 
     const submitForm = async function () {
@@ -65,7 +81,7 @@ const Login = function () {
 
         //  return console.log(form);
 
-        const req = await fetch('https://django-todo-list-api.herokuapp.com/api/login/', {
+        const req = await fetch(`${url}/api/login/`, {
 
             method: 'POST',
             headers: {
@@ -83,17 +99,15 @@ const Login = function () {
 
         if (req.status === 200) {
 
-            let res = await req.json()
+            let res = await req.json()      
 
-            console.log(req.status, res);
-
-
+            console.log(res);
         }
 
 
         else {
 
-            alert("Something went wrong")
+            alert("Something went wrong from server")
         }
 
 
@@ -118,7 +132,6 @@ const Login = function () {
 
             <HeadTag />
 
-            <main>
 
 
                 <div className="container">
@@ -174,7 +187,6 @@ const Login = function () {
 
                 </div>
 
-            </main>
         </div>
 
     )
