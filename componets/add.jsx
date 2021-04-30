@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import List from '../componets/list'
-
+import {useRouter} from 'next/router'
 import Cookies from 'js-cookie';
+import { url } from '../config';
 
 
 export default function Add(props) {
@@ -13,18 +14,25 @@ export default function Add(props) {
     const [error, setError] = useState("");
 
 
-
-    async function deleteItem(idx) {
+const router = useRouter();
+   
+async function deleteItem(idx) {
 
 
         // return console.log(idx)
 
-        const req = await fetch("https://django-todo-list-api.herokuapp.com/api/todo/" + idx, { credentials: 'include', method: 'DELETE' })
+
+
+
+        const req = await fetch(`${url}/api/todo/`+ idx, { credentials: 'include', method: 'DELETE' })
 
         const res = await req.json();
 
 
+
         console.log(res);
+
+
 
         loadTodo();
 
@@ -54,7 +62,7 @@ export default function Add(props) {
 
         // console.log(withCookies.)
 
-        const req = await fetch("https://django-todo-list-api.herokuapp.com/api/todo/",
+        const req = await fetch(`${url}/api/todo/`,
             {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 mode: 'cors', // no-cors, *cors, same-origin
@@ -73,18 +81,30 @@ export default function Add(props) {
             })
 
         const res = await req.json()
+        
+        if(req.status == 201){
+            setInput('')
+
+            // alert('Item added')
+    
+            loadTodo();
+    
+
+        }else if (req.status ==500){
 
 
+            alert("SERVER ERROR");
 
-        setInput('')
+            router.replace('/login')
+        }else {
+            alert("Something Went wrong Error:" , req.status);
 
-        // alert('Item added')
+            router.replace('/login')
 
-        console.log(res);
+        }
 
 
-        loadTodo();
-
+      
 
 
     }
@@ -92,7 +112,7 @@ export default function Add(props) {
 
     const loadTodo = async () => {
 
-        const req = await fetch("https://django-todo-list-api.herokuapp.com/api/todo/", { credentials: 'include' })
+        const req = await fetch(`${url}/api/todo/`, { credentials: 'include' })
 
 
         const res = await req.json();
@@ -108,7 +128,6 @@ export default function Add(props) {
 
     useEffect(async () => {
 
-        console.log('CSRF', document.cookie)
         loadTodo();
 
     }, [])
@@ -117,22 +136,11 @@ export default function Add(props) {
     return (
         <div className="row">
             <div className="col col-sm-12 col-md-6 col-lg-6 col-12">
-
-
                 <div className="add-container">
-
-
-
-
                     <div className="add-box">
                         <h1>My ToDo App</h1>
                         <div className="input-box">
-
-
                             <input type="text" placeholder="Add task" value={input} onChange={(e) => setInput(e.target.value)} />
-
-
-
                             <span onClick={updateList}>
                                 <i className="fal fa-plus"></i>
                             </span>
@@ -142,8 +150,6 @@ export default function Add(props) {
             </div>
             <div className="col col-sm-12 col-md-6 col-lg-6 col-12 list-parent">
                 <List data={data} deleteItem={deleteItem} />
-
-
             </div>
         </div>
     )

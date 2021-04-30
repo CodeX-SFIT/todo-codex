@@ -98,7 +98,8 @@ const Login = function () {
 
         if (req.status === 200) {
 
-            let res = await req.json()      
+            let res = await req.json()   
+            router.replace('/todo');   
 
             console.log(res);
         }
