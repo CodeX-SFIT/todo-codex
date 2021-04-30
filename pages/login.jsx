@@ -56,7 +56,7 @@ const Login = function () {
 
     const router = useRouter();
 
-    const [formData, setForm] = useState({ username: 'Damon', password: '123456' })
+    const [formData, setForm] = useState({ username: '', password: '' })
     useEffect(async () => {
 
         let req =  await fetch(`${url}/api/todo/` ,{credentials:'include'});
